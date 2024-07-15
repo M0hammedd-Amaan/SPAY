@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #001B79; /* Dark Grey Background */
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 40px;
+        border-radius: 10px;
+    }
+    h1 {
+        text-align: center;
+        color: #4CCD99; /* White */
+        margin-bottom: 30px;
+        font-weight: bold; /* Added bold font weight */
+    }
+    h3 {
+        color: #FFB534; /* White */
+        font-weight: bold; /* Added bold font weight */
+    }
+    form, .analyse-container, .button-group, .student-info {
+        margin-top: 20px;
+    }
+       .parent-portal-heading {
+        text-align: center;
+        color: #FFFFFF; /* White */
+        font-size: 29px; /* Choose a size that fits your design */
+        margin-top: 20px;
+        font-weight: bold;
+    }
+    input[type="text"], input[type="number"], input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ccc; /* Light Grey */
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        display: block;
+        width: 60%;
+        padding: 12px;
+        margin: 10px auto; /* Center the button horizontally */
+        border: none;
+        border-radius: 5px;
+        background-color: #EFF396; /* Green */
+        color: #000; /* White */
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049; /* Darker Green */
+    }
+    .hidden {
+        display: none;
+    }
+    .student-info-container {
+    display: flex;
+        justify-content: center; /* Align center horizontally */
+    }
+    .student-info {
+        text-align: right;
+        color: #D4E7C5; /* Cyan */
+        font-size: 22px;
+    }
+    .student-info span {
+        display: block; /* Ensure each detail is on its own line */
+        font-weight: bold; /* Added bold font weight */
+    }
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align the buttons vertically */
+    }
+    .analyse-section {
+        display: flex;
+        justify-content: space-between;
+    }
+    .analyse-item {
+        background-color: #eee; /* Light Grey */
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+      .analyse-item1 {
+        background-color: #EEC759; /* Light Grey */
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .transaction-item.add-money {
+        color: #fff; /* White */
+        background-color: #65B741;
+        padding: 7px;
+        border-radius: 5px;
+    }
+    .transaction-item.purchase {
+        color: #fff; /* Red */
+        background-color: #EF4040;
+        padding: 5px;
+        border-radius: 5px;
+        
+    }
+    .balance span {
+        color: #FFA500; /* Orange */
+        font-size: 20px; /* Increased font size */
+  
+    }
+</style>
+</head>
+<body>
+<div class="student-info-container">
+    <div class="student-info">
+        <span>CodeDash</span>
+        <span>12-CS-2025</span>
+    </div>
+</div>
+
+<div class="container" id="loginContainer">
+    <h1>Parent Login</h1>
+    <form id="loginForm">
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="button" onclick="login()">Login</button>
+        </div>
+    </form>
+</div>
+
+<div class="container hidden" id="parentPortal">
+     <div class="parent-portal-heading">Parent Portal</div>
+    <div class="button-group">
+        <button onclick="showAnalysisPage()">Analysis</button>
+    </div>
+    <div class="button-group">
+        <button onclick="showAddMoneyPage()">Add Money</button>
+    </div>
+    <div class="button-group">
+        <button onclick="showTransactions()">Transactions</button>
+    </div>
+    <div class="button-group">
+        <button onclick="checkBalance()">Check Balance</button>
+    </div>
+    <div class="button-group">
+        <button onclick="showLimitPage()">Set Limits</button>
+    </div>
+    <div class="button-group">
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<div class="container hidden" id="analysisPage">
+    <h1>Analysis</h1>
+    <div class="analyse-container">
+        <div class="analyse-section">
+            <div>
+                <h3>Weekly Expenditure</h3>
+                <div class="analyse-item">
+                    <span>School Fee: $10000</span>
+                </div>
+                <div class="analyse-item">
+                    <span>Canteen: $405</span>
+                </div>
+                <div class="analyse-item">
+                    <span>Xerox: $35</span>
+                </div>
+                <div class="analyse-item">
+                    <span>Cafeteria: $132</span>
+                </div>
+                <div class="analyse-item1">
+                    Total: $10572
+                </div>
+            </div>
+            <div>
+                <h3>Monthly Expenditure</h3>
+                <div class="analyse-item">
+                    <span>School Fee: $10000</span>
+                </div>
+                <div class="analyse-item">
+                    <span>Canteen: $1902</span>
+                </div>
+                <div class="analyse-item">
+                    <span>Xerox: $104</span>
+                </div>
+                <div class="analyse-item">
+                    <span>Cafeteria: $512</span>
+                </div>
+                <div class="analyse-item1">
+                    Total: $19613
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="back-to-money">
+        <button onclick="backToParentPortal()">Back to Home</button>
+    </div>
+</div>
+
+<div class="container hidden" id="addMoneyPage">
+    <h1>Add Money</h1>
+    <form id="addMoneyForm" onsubmit="submitAddMoney(event)">
+        <input type="number" id="moneyAmount" placeholder="Enter Amount" required>
+        <input type="text" id="paymentMethod" placeholder="Payment Method" readonly required>
+        <input type="text" id="upiId" placeholder="Enter UPI ID" value="12345@paytm" readonly required>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="back-to-money">
+        <button onclick="backToParentPortal()">Back to Home</button>
+    </div>
+</div>
+
+<div class="container hidden" id="limitPage">
+    <h1>Set Limits</h1>
+    <form id="limitForm" onsubmit="submitLimits(event)">
+        <div>
+            <h3 for="canteen">Canteen:</h3>
+            <input type="number" id="canteen" name="canteen" min="0" required>
+        </div>
+        <div>
+            <h3 for="xerox">Xerox:</h3>
+            <input type="number" id="xerox" name="xerox" min="0" required>
+        </div>
+        <div>
+            <h3 for="cafeteria">Cafeteria:</h3>
+            <input type="number" id="cafeteria" name="cafeteria" min="0" required>
+        </div>
+        <div>
+            <h3 for="stationary">Stationary:</h3>
+            <input type="number" id="stationary" name="stationary" min="0" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="back-to-money">
+        <button onclick="backToParentPortal()">Back to Home</button>
+    </div>
+</div>
+
+<div class="container hidden" id="monitoring">
+    <h1>Transactions</h1>
+    <ul id="transactionHistory">
+        <div class="transaction-item add-money">Transaction 1: Add Money - $1000</div>
+        <div class="transaction-item purchase">Transaction 2: Purchase - $90 (Canteen)</div>
+        <div class="transaction-item add-money">Transaction 3: Add Money - $30</div>
+        <div class="transaction-item purchase">Transaction 4: Purchase - $50 (Cafeteria)</div>
+        <div class="transaction-item add-money">Transaction 5: Add Money - $10</div>
+        <div class="transaction-item purchase">Transaction 6: Purchase - $5 (Canteen)</div>
+        <div class="transaction-item add-money">Transaction 7: Add Money - $25</div>
+        <div class="transaction-item purchase">Transaction 8: Purchase - $20 (Xerox)</div>
+        <div class="transaction-item add-money">Transaction 9: Add Money - $40</div>
+        <div class="transaction-item purchase">Transaction 10: Purchase - $120 (Canteen)</div>
+        <div class="transaction-item add-money">Transaction 11: Add Money - $15</div>
+        <div class="transaction-item purchase">Transaction 12: Purchase - $30 (Cafeteria)</div>
+        <div class="transaction-item purchase">Transaction 18: Purchase - $45 (Canteen)</div>
+        <div class="transaction-item add-money">Transaction 19: Add Money - $20</div>
+        <div class="transaction-item purchase">Transaction 20: Purchase - $50 (Cafeteria)</div>
+    </ul>
+    <div class="balance">
+        <span>Child's Current Balance: $2543</span>
+    </div>
+    <div class="back-to-money">
+        <button onclick="backToParentPortal()">Back to Home</button>
+    </div>
+</div>
+<!-- Other sections remain unchanged -->
+<script>
+    let currentUser = null;
+
+    function login() {
+        // Placeholder function for login
+        // You can implement authentication logic here
+        console.log("Logged in successfully");
+        showParentPortal();
+    }
+
+    function logout() {
+        // Placeholder function for logout
+        console.log("Logged out successfully");
+        hideAllContainers();
+        document.getElementById('loginContainer').classList.remove('hidden');
+    }
+
+    function showParentPortal() {
+        hideAllContainers();
+        document.getElementById('parentPortal').classList.remove('hidden');
+    }
+
+    function showAddMoneyPage() {
+        hideAllContainers();
+        document.getElementById('addMoneyPage').classList.remove('hidden');
+    }
+
+    function showLimitPage() {
+        hideAllContainers();
+        document.getElementById('limitPage').classList.remove('hidden');
+    }
+
+    function showTransactions() {
+        hideAllContainers();
+        document.getElementById('monitoring').classList.remove('hidden');
+    }
+
+    function hideAllContainers() {
+        let containers = document.getElementsByClassName('container');
+        for (let container of containers) {
+            container.classList.add('hidden');
+        }
+    }
+
+    function backToParentPortal() {
+        hideAllContainers();
+        document.getElementById('parentPortal').classList.remove('hidden');
+    }
+
+    function submitAddMoney(event) {
+        event.preventDefault();
+        // Placeholder function for submitting add money form
+        console.log("Add money form submitted");
+        alert("Transaction successful!"); // Show success message
+        backToParentPortal();
+    }
+
+    function submitLimits(event) {
+        event.preventDefault();
+        // Placeholder function for submitting limits form
+        console.log("Limits form submitted");
+        alert("Limits set successfully!"); // Show success message
+        backToParentPortal();
+    }
+
+    function checkBalance() {
+        // Placeholder function for checking balance
+        // You can implement logic to calculate balance here
+        alert("Child's current balance: $2543"); // Demo balance
+    }
+
+    function showAnalysisPage() {
+        hideAllContainers();
+        document.getElementById('analysisPage').classList.remove('hidden');
+    }
+
+    // Rest of the JavaScript code remains as provided
+</script>
+</body>
+</html>
